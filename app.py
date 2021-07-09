@@ -1,9 +1,17 @@
+import os
+
 from flask import Flask
 from flask_restful import Api
 
 from resources.user import User, UserList
 
 app = Flask(__name__)
+uri = os.getenv('DATABASE_URL')
+if uri and uri.startswith('postgres://'):
+    uri = uri.replace('postgres://','postgresql://',1)
+else:
+    uri = 'sqlite:///data.db'
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

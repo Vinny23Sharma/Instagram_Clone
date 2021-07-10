@@ -2,10 +2,12 @@ import os
 
 from flask import Flask
 from flask_restful import Api
-
+from flask_cors import CORS
 from resources.user import User, UserList
 
 app = Flask(__name__)
+
+
 uri = os.getenv('DATABASE_URL')
 if uri and uri.startswith('postgres://'):
     uri = uri.replace('postgres://','postgresql://',1)

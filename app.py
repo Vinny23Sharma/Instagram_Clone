@@ -6,6 +6,7 @@ from flask_cors import CORS
 from resources.user import User, UserList
 
 app = Flask(__name__)
+CORS(app)
 
 
 uri = os.getenv('DATABASE_URL')
